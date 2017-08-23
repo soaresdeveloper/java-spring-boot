@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1"></meta>
-<title>Insert title here</title>
+	<meta charset="ISO-8859-1"></meta>
+	<title>Spring Boot - index</title>
+	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	<script src="/webjars/jquery/3.1.1-1/jquery.min.js"></script>
 </head>
 <body>
-	<span th:text="'Mensagem do servidor: ' + ${mensagem}"></span>
+	<div class="container">
+	<h1>Mensagem do servidor: <span th:text="${mensagem}"></span>
+	<p><small>com Bootstrap e Jquery</small></p>
+	</h1>
+	</div>
 </body>
 </html>
