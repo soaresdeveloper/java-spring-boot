@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+	<meta charset="UTF-8"	/>
+	<title>TreinaWeb Spring Boot - alteração de Instituição</title>
+	<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+	<div th:replace="fragmentos/fragmentos :: header"></div>
+	<div class="container">
+		<h2>Alteração de Instituição</h2>
+		<form class="form-horizontal" action="/instituicoes/editar" method="post"
+			th:object="${instituicao}">
+				<input type="hidden" th:field="*{id}" />
+				<div class="row">
+					<div class="form-group col-md-6">
+						<label for="txt-nome">Nome da instituição:</label>
+						<input type="text" class="form-control" id="txt-nome" th:field="*{nome}" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-md-6">
+						<label for="txt-endereco">Endereço:</label>
+						<input type="text" class="form-control" id="txt-endereco" th:field="*{endereco}" />
+					</div>
+				</div>
+			<input type="submit" class="btn btn-success" value="Salvar" />
+		</form>
+		
+	</div>
+	
+	<div th:replace="fragmentos/fragmentos :: footer"></div>
+	<script type="text/javascript" src="/webjars/jquery/3.1.1-1/jquery.min.js" ></script>
+</body>
+</html>
