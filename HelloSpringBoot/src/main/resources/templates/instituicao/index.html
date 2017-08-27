@@ -17,7 +17,21 @@
 		<br />
 		<br />
 		
-		<table class="table table-striped table-bordered">
+		<div class="row">
+		<div class="form-group col-md-12">
+			<div class="input-group">
+				<input class="form-control" id="txt-pesquisa-instituicao" type="text" />
+				<span class="input-group-btn">
+				<button type="button" class="btn btn-default" id="btn-pesquisa-instituicao">
+				<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+				Buscar
+				</button>
+				</span>
+			</div>
+		</div>
+		</div>
+		
+		<table class="table table-striped table-bordered" id="tbl-instituicoes">
 			<thead>
 				<th>Nome da instituição</th>
 				<th>Endereço</th>
@@ -44,5 +58,35 @@
 	<div th:replace="fragmentos/fragmentos :: footer" ></div>
 
 	<script type="text/javascript" src="/webjars/jquery/3.1.1-1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			
+			$('#btn-pesquisa-instituicao').click(function(){
+				$.ajax({
+					method: 'GET',
+					url: '/instituicoes/pesquisarPorNome/' + $('#txt-pesquisa-instituicao').val(),
+					success: function(data){
+						$('#tbl-instituicoes tbody > tr').remove();
+							$.each(data, function(){
+								$('#tbl-instituicoes tbody').append(
+									'<tr>'+
+									'	<td>'+ this.nome + '</td>'  +
+									'	<td>'+ this.endereco + '</td>'  +
+									' <td>' +
+									' 	<a class="btn btn-default" style="margin-right:5px;" href="/instituicoes/editar/'+ this.id+'"><span class="glyphicon glyphicon-pencil" aria-hidden="true">Editar</span></a>'+
+									' 	<a class="btn btn-danger" href="/instituicoes/excluir/'+ this.id+'"><span class="glyphicon glyphicon-remove" aria-hidden="true">Excluir</span></a>'+
+									'</td>'+
+									'</tr>'
+								);
+							});
+					},
+					error: function(){
+						alert("Não foi possível executar a pesquisa.");
+					}
+					
+				});
+			});
+		});
+	</script>
 </body>
 </html>
