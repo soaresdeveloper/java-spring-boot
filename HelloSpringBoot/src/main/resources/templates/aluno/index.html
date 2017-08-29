@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+	<meta charset="UTF-8"/>
+	<title>TreinaWeb Spring Boot - Lista de Alunos</title>
+	<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body>
+	<div th:replace="fragmentos/fragmentos :: header" ></div>
+	<div class="container">
+		
+		<h2>Lista de Alunos Cadastrados</h2>
+		<a href="/alunos/inserir" class="btn btn-primary">
+		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+		Novo Aluno</a>
+		
+		<br />
+		<br />
+		
+		<table class="table table-striped table-bordered" id="tbl-alunos">
+			<thead>
+				<th>Nome do aluno</th>
+				<th>idade</th>
+				<th>Instituição</th>
+				<th>Ações</th>
+			</thead>
+			<tbody>
+				<tr th:each="aluno: ${alunos}">
+					<td th:text="${aluno.nome}"></td>
+					<td th:text="${aluno.idade}"></td>
+					<td th:text="${aluno.instituicao.nome}"></td>
+					<td>
+						<a th:href="@{/alunos/editar/{id}(id=${aluno.id})}" class="btn btn-default" style="margin-right: 5px;">
+						<span class="glyphicon glyphicon-pencil" aria-hidden="true">Editar</span>
+						</a>
+						<a th:href="@{/alunos/excluir/{id}(id=${aluno.id})}" class="btn btn-danger">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true">Excluir</span>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+	</div>
+	
+	<div th:replace="fragmentos/fragmentos :: footer" ></div>
+
+	<script type="text/javascript" src="/webjars/jquery/3.1.1-1/jquery.min.js"></script>
+</body>
+</html>

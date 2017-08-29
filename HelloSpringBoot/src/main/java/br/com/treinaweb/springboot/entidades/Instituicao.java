@@ -1,10 +1,13 @@
 package br.com.treinaweb.springboot.entidades;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Instituicao {
@@ -18,6 +21,9 @@ public class Instituicao {
 	
 	@Column(length=100)
 	private String endereco;
+	
+	@OneToMany(mappedBy = "instituicao")
+	private Set<Aluno> alunos;
 
 	public Long getId() {
 		return id;
