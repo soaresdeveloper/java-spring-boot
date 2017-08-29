@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.treinaweb.springboot.entidades.Instituicao;
+import br.com.treinaweb.springboot.repositorios.RepositorioAluno;
 import br.com.treinaweb.springboot.repositorios.RepositorioInstituicao;
 
 @Controller
@@ -22,6 +23,9 @@ public class InstituicoesController {
 
 	@Autowired
 	private RepositorioInstituicao repositorioInstituicao;
+	
+	@Autowired
+	private RepositorioAluno repositorioAluno;
 
 	@GetMapping("/index")
 	public ModelAndView index() {
@@ -74,5 +78,13 @@ public class InstituicoesController {
 		} else {
 			return repositorioInstituicao.findAll();
 		}
+	}
+	
+	@GetMapping("/detalharInstituicao/{id}")
+	public ModelAndView detalharInstituicao(@PathVariable Long id){
+		ModelAndView resultado = new ModelAndView("/instituicao/detalhar-instituicao");
+		resultado.addObject("instituicao", repositorioInstituicao.findOne(id));
+		resultado.addObject("alunos", repositorioAluno.findByInstituicao(id));
+		return resultado;
 	}
 }

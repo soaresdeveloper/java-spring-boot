@@ -20,7 +20,7 @@
 		<div class="row">
 		<div class="form-group col-md-12">
 			<div class="input-group">
-				<input class="form-control" id="txt-pesquisa-instituicao" type="text" />
+				<input class="form-control" id="txt-pesquisa-instituicao" type="text" placeholder="Buscar instituição por nome" />
 				<span class="input-group-btn">
 				<button type="button" class="btn btn-default" id="btn-pesquisa-instituicao">
 				<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
@@ -42,6 +42,9 @@
 					<td th:text="${instituicao.nome}"></td>
 					<td th:text="${instituicao.endereco}"></td>
 					<td>
+						<a th:href="@{/instituicoes/detalharInstituicao/{id}(id=${instituicao.id})}" class="btn btn-default" style="margin-right: 5px;">
+						<span class="glyphicon glyphicon-search" aria-hidden="true">Detalhar</span>
+						</a>
 						<a th:href="@{/instituicoes/editar/{id}(id=${instituicao.id})}" class="btn btn-default" style="margin-right: 5px;">
 						<span class="glyphicon glyphicon-pencil" aria-hidden="true">Editar</span>
 						</a>
